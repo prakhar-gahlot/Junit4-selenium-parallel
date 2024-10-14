@@ -8,10 +8,6 @@
     <artifactId>lambdatest-junit-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
-
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <surefire.version>2.19.1</surefire.version>
@@ -47,10 +43,8 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <plugins>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
@@ -59,18 +53,10 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
-            </plugin>
         </plugins>
     </build>
 
     <profiles>
-
         <profile>
             <id>parallel</id>
             <build>
@@ -78,10 +64,13 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M7</version>
                         <configuration>
-                            <includes>
-                                <include>com/lambdatest/JUnitConcurrentTodo.java</include>
-                            </includes>
+                            <!-- Enable parallel execution -->
+                            <parallel>classes</parallel>  <!-- Can be classes or methods -->
+                            <threadCount>2</threadCount>
+                            <forkCount>2</forkCount> <!-- Run tests in one JVM -->
+                            <reuseForks>true</reuseForks> <!-- Customize the number of threads -->
                         </configuration>
                     </plugin>
                 </plugins>
@@ -95,6 +84,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M7</version>
                         <configuration>
                             <includes>
                                 <include>com/lambdatest/JUnitTodo.java</include>
@@ -104,7 +94,6 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 
 </project>

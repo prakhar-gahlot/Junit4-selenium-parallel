@@ -13,10 +13,10 @@ import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Test_JUnitTodo {
-     String username = System.getenv("LT_USERNAME") == null ? "Your LT Username" : System.getenv("LT_USERNAME");
-     String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" : System.getenv("LT_ACCESS_KEY");
-     public static RemoteWebDriver driver = null;
+public class Test_JUnitTodo2 {
+    String username = System.getenv("LT_USERNAME") == null ? "Your LT Username" : System.getenv("LT_USERNAME");
+    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" : System.getenv("LT_ACCESS_KEY");
+    public static RemoteWebDriver driver = null;
 
     /*
     Steps to run Smart UI project (https://beta-smartui.lambdatest.com/)
@@ -37,7 +37,7 @@ public class Test_JUnitTodo {
 
         Map<String, Object> ltOptions = new HashMap<>();
         ltOptions.put("build", "JUnitSampleTestApp");
-        ltOptions.put("name", "JUnitSampleTest");
+        ltOptions.put("name", "JUnitSampleTest2");
         ltOptions.put("selenium_version", "4.0.0");
         // ltOptions.put("project", "");  //Enter Project name here
         // ltOptions.put("smartUI.project", "");  //Enter smartUI Project name here
@@ -61,23 +61,23 @@ public class Test_JUnitTodo {
     @Test
     public void testSimple() throws Exception {
         try {
-           driver.get("https://lambdatest.github.io/sample-todo-app/");
+            driver.get("https://lambdatest.github.io/sample-todo-app/");
 
-           // Add Webhook here for Screenshot
-            
-           //Let's mark done first two items in the list.
-           driver.findElement(By.name("li1")).click();
-           driver.findElement(By.name("li2")).click();
+            // Add Webhook here for Screenshot
 
-           // Let's add an item in the list.
-           driver.findElement(By.id("sampletodotext")).sendKeys("Yey, Let's add it to list");
-           driver.findElement(By.id("addbutton")).click();
+            //Let's mark done first two items in the list.
+            driver.findElement(By.name("li1")).click();
+            driver.findElement(By.name("li2")).click();
 
-           // Let's check that the item we added is added in the list.
-           String enteredText =  driver.findElementByXPath("/html/body/div/div/div/ul/li[6]/span").getText();
-           if (enteredText.equals("Yey, Let's add it to list")) {
-               status = "passed";
-           }
+            // Let's add an item in the list.
+            driver.findElement(By.id("sampletodotext")).sendKeys("Yey, Let's add it to list");
+            driver.findElement(By.id("addbutton")).click();
+
+            // Let's check that the item we added is added in the list.
+            String enteredText =  driver.findElementByXPath("/html/body/div/div/div/ul/li[6]/span").getText();
+            if (enteredText.equals("Yey, Let's add it to list")) {
+                status = "passed";
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
